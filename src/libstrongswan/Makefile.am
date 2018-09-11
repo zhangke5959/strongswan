@@ -558,6 +558,13 @@ if MONOLITHIC
 endif
 endif
 
+if USE_GMALG
+  SUBDIRS += plugins/gmalg
+if MONOLITHIC
+  libstrongswan_la_LIBADD += plugins/gmsdf/libstrongswan-gmalg.la
+endif
+endif
+
 if USE_GCRYPT
   SUBDIRS += plugins/gcrypt
 if MONOLITHIC

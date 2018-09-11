@@ -78,6 +78,7 @@ plugins = \
 	plugins/lookip.opt \
 	plugins/ntru.opt \
 	plugins/openssl.opt \
+	plugins/gmalg.opt \
 	plugins/osx-attr.opt \
 	plugins/p-cscf.opt \
 	plugins/pkcs11.opt \

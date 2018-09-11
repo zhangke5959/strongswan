@@ -193,7 +193,7 @@ METHOD(enumerator_t, crl_enumerate, bool,
 				if (ASN1_STRING_type(crlrsn) == V_ASN1_ENUMERATED &&
 					ASN1_STRING_length(crlrsn) == 1)
 				{
-					*reason = *ASN1_STRING_data(crlrsn);
+					*reason = *ASN1_STRING_get0_data(crlrsn);
 				}
 				ASN1_STRING_free(crlrsn);
 			}

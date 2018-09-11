@@ -168,7 +168,7 @@ chunk_t openssl_asn1_str2chunk(ASN1_STRING *asn1)
 {
 	if (asn1)
 	{
-		return chunk_create(ASN1_STRING_data(asn1), ASN1_STRING_length(asn1));
+		return chunk_create(ASN1_STRING_get0_data(asn1), ASN1_STRING_length(asn1));
 	}
 	return chunk_empty;
 }
