@@ -257,16 +257,17 @@ void sm4_cbc_encrypt(sm4_ctx *ctx, u8 *key, u8 *iv, u8 *in, u8 len, u8 *out)
 #if DEBUG
 	printf(" function: %s ,  line= %d \n", __FUNCTION__, __LINE__);
 #endif
+	u8 temp[16];
 	int i;
 
 	sm4_set_key(ctx, key, 16);
-
+	memcpy(temp, iv, 16 );
 	while(len > 0)
 	{
 		for(i = 0; i < 16; i++)
-			out[i] = (u8)(in[i] ^ iv[i]);
+			out[i] = (u8)(in[i] ^ temp[i]);
 		sm4_one_round(ctx->sk_enc, out, out);
-		memcpy(iv, out, 16);
+		memcpy(temp, out, 16);
 		in  += 16;
 		out += 16;
 		len -= 16;
@@ -282,14 +283,13 @@ void sm4_cbc_decrypt(sm4_ctx *ctx, u8 *key, u8 *iv, u8 *in, u8 len, u8 *out)
 	int i;
 
 	sm4_set_key(ctx, key, 16);
-
+	memcpy(temp, iv, 16 );
 	while(len > 0)
 	{
-		memcpy(temp, in, 16 );
 		sm4_one_round(ctx->sk_dec, in, out);
 		for(i = 0; i < 16; i++)
-			out[i] = (u8)(out[i] ^ iv[i] );
-		memcpy(iv, temp, 16);
+			out[i] = (u8)(out[i] ^ temp[i] );
+		memcpy(temp, in, 16);
 		in  += 16;
 		out += 16;
 		len -= 16;

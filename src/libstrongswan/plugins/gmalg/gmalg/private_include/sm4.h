@@ -6,6 +6,7 @@
 typedef struct {
 	u32 sk_enc[32];
 	u32 sk_dec[32];
+	u32 iv[16];
 } sm4_ctx;
 
 void sm4_ecb_encrypt(sm4_ctx *ctx, u8 *key, u8 *in, u8 len, u8 *out);
