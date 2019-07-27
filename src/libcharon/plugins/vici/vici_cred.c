@@ -233,6 +233,10 @@ CALLBACK(load_key, vici_message_t*,
 	{
 		type = KEY_BLISS;
 	}
+	else if (strcaseeq(str, "sm2"))
+	{
+		type = KEY_SM2;
+	}
 	else
 	{
 		return create_reply("invalid key type: %s", str);
