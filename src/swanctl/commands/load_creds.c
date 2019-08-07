@@ -209,6 +209,9 @@ static bool load_key_anytype(load_ctx_t *ctx, char *path,
 		case KEY_BLISS:
 			loaded = load_key(ctx, path, "bliss", encoding);
 			break;
+		case KEY_SM2:
+			loaded = load_key(ctx, path, "sm2", encoding);
+			break;
 		default:
 			fprintf(stderr, "unsupported key type in '%s'\n", path);
 			break;
@@ -278,6 +281,7 @@ static bool determine_credtype(char *type, credential_type_t *credtype,
 		{ "ecdsa",			CRED_PRIVATE_KEY,		KEY_ECDSA,			},
 		{ "bliss",			CRED_PRIVATE_KEY,		KEY_BLISS,			},
 		{ "pkcs12",			CRED_CONTAINER,			CONTAINER_PKCS12,	},
+		{ "sm2", 			CRED_PRIVATE_KEY, 		KEY_SM2,			},
 	};
 	int i;
 
